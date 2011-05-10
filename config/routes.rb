@@ -1,4 +1,10 @@
 DepotOnja::Application.routes.draw do
+  get "file_m_anage/getFileContent"
+
+  get "say/hello"
+
+  get "say/goodbye"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
