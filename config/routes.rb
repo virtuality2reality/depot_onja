@@ -1,4 +1,6 @@
 DepotOnja::Application.routes.draw do
+  resources :products
+
   get "file_m_anage/getFileContent"
 
   get "say/hello"
