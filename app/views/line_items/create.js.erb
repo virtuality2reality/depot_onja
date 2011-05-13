@@ -1,0 +1,10 @@
+$('#cart').html("<%= escape_javascript (render(@cart)) %>");
+<% if @cart.total_items == 1 %>
+  $('#cart').show("slide", { direction: "up" }, 1000);
+<% else%>
+  $('#cart').show();
+  $('#current_item').highlightFade("#88ff88",50,400,"");
+<% end %>
+
+    
+

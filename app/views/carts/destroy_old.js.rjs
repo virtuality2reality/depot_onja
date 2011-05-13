@@ -1,0 +1,2 @@
+page.replace_html('cart', '')
+page[:cart].visual_effect :blind_up, :duration => 1

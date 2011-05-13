@@ -81,8 +81,26 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to(line_items_url) }
+      format.html { redirect_to(line_items_url) }      
       format.xml  { head :ok }
+    end
+  end
+  
+  def decrement
+    @cart = current_cart
+    @line_item = LineItem.find(params[:line_item])
+    @line_item.decrement_item(@line_item)    
+    respond_to do |format|
+      if @line_item.save
+        format.html { redirect_to(store_path) }  
+        format.js   { @current_item = @line_item }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "new" }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @line_item.errors, :status => :unprocessable_entity }
+      end      
+      
     end
   end
 end

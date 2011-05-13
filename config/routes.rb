@@ -1,5 +1,10 @@
 DepotOnja::Application.routes.draw do
-  resources :line_items
+  
+  resources :line_items do
+    collection do
+     post "decrement" => "line_items", :as => :decrement
+    end
+  end
 
   resources :carts
 
