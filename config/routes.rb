@@ -1,5 +1,7 @@
 DepotOnja::Application.routes.draw do
   
+  resources :orders
+
   resources :line_items do
     collection do
      post "decrement" => "line_items", :as => :decrement
@@ -10,13 +12,15 @@ DepotOnja::Application.routes.draw do
 
   get "store/index"
 
-  resources :products
+  resources :products do    
+    get :who_bought, :on => :member
+  end
 
   get "file_m_anage/getFileContent"
 
   get "say/hello"
 
-  get "say/goodbye" 
+  get "say/goodbye"   
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

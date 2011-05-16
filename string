@@ -1,0 +1,6 @@
+[1m[37m      invoke[0m  active_record
+[1m[32m      create[0m    db/migrate/20110516135454_create_create_table_pay_types.rb
+[1m[32m      create[0m    app/models/create_table_pay_type.rb
+[1m[37m      invoke[0m    test_unit
+[1m[32m      create[0m      test/unit/create_table_pay_type_test.rb
+[1m[32m      create[0m      test/fixtures/create_table_pay_types.yml
