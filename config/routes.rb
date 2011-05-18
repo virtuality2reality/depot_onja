@@ -1,28 +1,26 @@
-DepotOnja::Application.routes.draw do
+DepotOnja::Application.routes.draw do  
+   #sessions routes    
+  get 'admin' => 'admin#index'
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end  
   
-  resources :users
-
-  resources :orders
-
-  resources :line_items do
-    collection do
-     post "decrement" => "line_items", :as => :decrement
+  scope '(:locale)' do    
+    resources :users
+    resources :orders
+    resources :line_items do
+      collection do
+        post "decrement" => "line_items", :as => :decrement
+      end
     end
-  end
-
-  resources :carts
-
-  get "store/index"
-
-  resources :products do    
-    get :who_bought, :on => :member
-  end
-
-  get "file_m_anage/getFileContent"
-
-  get "say/hello"
-
-  get "say/goodbye"   
+    resources :carts      
+    resources :products do    
+      get :who_bought, :on => :member
+    end    
+    root :to => 'store#index', :as => 'store'
+  end 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -73,8 +71,7 @@ DepotOnja::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
-  root :to => 'store#index', :as => 'store'
+  # root :to => "welcome#index"  
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
