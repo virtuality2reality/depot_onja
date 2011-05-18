@@ -3,10 +3,9 @@
     <tr id="current_item" >
   <% else %>
     <tr>
-  <% end %>
-      <td><%= line_item.quantity %>&times;</td>
-      <td><%= line_item.product.title %></td>  
-      <td class="item_price" ><%= number_to_currency(line_item.total_price) %></td>
+  <% end %>      
+      <td><%= sprintf("%2d x %s", line_item.quantity, truncate(line_item.product.title, :length => 50)) %></td>
+      <td class="item_price" ><%= number_to_currency(line_item.total_price) %></td>      
       <td><%= button_to "-", decrement_line_items_path(:line_item => line_item), :remote => true %></td>
     </tr>
 <% end %>

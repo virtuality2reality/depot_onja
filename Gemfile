@@ -13,6 +13,8 @@ gem 'sqlite3'
 
 gem 'will_paginate', '>= 3.0.pre'
 
+gem 'bcrypt-ruby', :require => "bcrypt"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

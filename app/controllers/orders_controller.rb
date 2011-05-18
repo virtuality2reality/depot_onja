@@ -54,15 +54,16 @@ class OrdersController < ApplicationController
       return 
     end    
     @order = Order.new(params[:order])
-    @order.add_line_items_from_cart(@cart)
-
+    @order.add_line_items_from_cart(@cart)    
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
+        Notifier.order_received(@order).deliver        
         format.html { redirect_to(store_url, :notice => 'Think you for your order.') }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
+        @pay_types = PayType.select([:id,:name])
         format.html { render :action => "new" }
         format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
       end
